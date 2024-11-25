@@ -1,5 +1,6 @@
 #
 # TEST CHANGES
+#
 # spec file for package salt-extensions
 #
 # Copyright (c) 2024 SUSE LLC
