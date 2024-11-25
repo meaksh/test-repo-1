@@ -1,0 +1,19 @@
+main_workflow:
+  steps:
+    - branch_package:
+        source_project: home:PSuarezHernandez:tests:github
+        source_package: salt-extensions
+        target_project: home:PSuarezHernandez:tests:github:CI
+  filters:
+    event: pull_request
+
+rebuild_master:
+  steps:
+    - trigger_services:
+        project: home:PSuarezHernandez:tests:github
+        package: salt-extensions
+  filters:
+    event: push
+    branches:
+      only:
+        - main
