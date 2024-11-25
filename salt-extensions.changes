@@ -1,0 +1,6 @@
+-------------------------------------------------------------------
+Mon Nov 25 15:24:45 UTC 2024 - Pablo Suárez Hernández <psuarezhernandez@suse.com>
+
+- Initial packages:
+  * saltext-mysql
+  * saltext-prometheus
