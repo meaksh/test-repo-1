@@ -15,35 +15,49 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
+%define	saltext_mysql_version 1.0.0
+%define	saltext_prometheus_version 2.1.0
 
 Name:           salt-extensions
-Version:        
+Version:        0.1
 Release:        0
-Summary:
-# FIXME: Select a correct license from https://github.com/openSUSE/spec-cleaner#spdx-licenses
-License:        
-URL:            
-Source:         
-BuildRequires:  
+Summary:	Salt Extensions provided by openSUSE
+License:        Apache-2.0
+URL:            https://github.com/meaksh/test-repo-1
+Source:         test-repo-1-%{version}.tar.gz
+Source1:        https://files.pythonhosted.org/packages/source/s/saltext.mysql/saltext_mysql-%{saltext_mysql_version}.tar.gz
+Source2:        https://files.pythonhosted.org/packages/source/s/saltext.mysql/saltext.prometheus-%{saltext_prometheus_version}.tar.gz
+BuildRequires:  python-rpm-macros
+Requires:       salt-extensions-mysql
+Requires:       salt-extensions-prometheus
 
 %description
+A collection of different Salt Extensions packages by openSUSE
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n test-repo-1-%{version}
 
 %build
-%configure
-%make_build
+%pyproject_wheel
 
 %install
-%make_install
+%pyproject_install
 
-%check
-%make_build check
+%package mysql
+Version:	%{saltext_mysql_version}
+Summary:	Salt Extension for interacting with MySQL
+
+%description mysql
+Salt Extension for interacting with MySQL
+
+%package prometheus
+Version:	%{saltext_prometheus_version}
+Summary:	Salt Extension for interacting with Prometheus
+
+%description prometheus
+Salt Extension for interacting with Prometheus
 
 %files
-%license COPYING
-%doc ChangeLog README
 
 %changelog
 
