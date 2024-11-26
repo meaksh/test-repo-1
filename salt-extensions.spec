@@ -34,7 +34,7 @@ BuildRequires:  fdupes
 BuildRequires:  python-rpm-macros
 Requires:       salt-extensions-mysql
 Requires:       salt-extensions-prometheus
-#BuildArch: noarch
+Requires:       salt >= 3006.0
 
 %description
 A collection of different Salt Extensions packages by openSUSE
