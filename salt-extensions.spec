@@ -17,13 +17,13 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
-%define	saltext_mysql_version 1.0.0
-%define	saltext_prometheus_version 2.1.0
+%define saltext_mysql_version 1.0.0
+%define saltext_prometheus_version 2.1.0
 
 Name:           salt-extensions
 Version:        0.1
 Release:        0
-Summary:	Salt Extensions provided by openSUSE
+Summary:        Salt Extensions provided by openSUSE
 License:        Apache-2.0
 URL:            https://github.com/meaksh/test-repo-1
 Source:         test-repo-1-%{version}.tar.gz
@@ -46,15 +46,15 @@ A collection of different Salt Extensions packages by openSUSE
 %pyproject_install
 
 %package mysql
-Version:	%{saltext_mysql_version}
-Summary:	Salt Extension for interacting with MySQL
+Version:        %{saltext_mysql_version}
+Summary:        Salt Extension for interacting with MySQL
 
 %description mysql
 Salt Extension for interacting with MySQL
 
 %package prometheus
-Version:	%{saltext_prometheus_version}
-Summary:	Salt Extension for interacting with Prometheus
+Version:        %{saltext_prometheus_version}
+Summary:        Salt Extension for interacting with Prometheus
 
 %description prometheus
 Salt Extension for interacting with Prometheus
