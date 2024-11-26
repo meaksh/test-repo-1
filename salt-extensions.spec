@@ -1,6 +1,4 @@
 #
-# TEST CHANGES
-#
 # spec file for package salt-extensions
 #
 # Copyright (c) 2024 SUSE LLC
@@ -20,6 +18,8 @@
 %define saltext_mysql_version 1.0.0
 %define saltext_prometheus_version 2.1.0
 
+%{?sle15_python_module_pythons}
+
 Name:           salt-extensions
 Version:        0.1
 Release:        0
@@ -27,11 +27,14 @@ Summary:        Salt Extensions provided by openSUSE
 License:        Apache-2.0
 URL:            https://github.com/meaksh/test-repo-1
 Source:         test-repo-1-%{version}.tar.gz
-Source1:        https://files.pythonhosted.org/packages/source/s/saltext.mysql/saltext_mysql-%{saltext_mysql_version}.tar.gz
-Source2:        https://files.pythonhosted.org/packages/source/s/saltext.mysql/saltext.prometheus-%{saltext_prometheus_version}.tar.gz
+BuildRequires:  %{python_module pip}
+BuildRequires:  %{python_module setuptools_scm}
+BuildRequires:  %{python_module wheel}
+BuildRequires:  fdupes
 BuildRequires:  python-rpm-macros
 Requires:       salt-extensions-mysql
 Requires:       salt-extensions-prometheus
+#BuildArch: noarch
 
 %description
 A collection of different Salt Extensions packages by openSUSE
@@ -40,10 +43,24 @@ A collection of different Salt Extensions packages by openSUSE
 %autosetup -p1 -n test-repo-1-%{version}
 
 %build
+pushd saltext_mysql-%{saltext_mysql_version}
 %pyproject_wheel
+popd
+
+pushd saltext.prometheus-%{saltext_prometheus_version}
+%pyproject_wheel
+popd
 
 %install
+pushd saltext_mysql-%{saltext_mysql_version}
 %pyproject_install
+popd
+
+pushd saltext.prometheus-%{saltext_prometheus_version}
+%pyproject_install
+popd
+
+%python_expand %fdupes %{buildroot}/%{$python_sitelib}
 
 %package mysql
 Version:        %{saltext_mysql_version}
@@ -60,6 +77,18 @@ Summary:        Salt Extension for interacting with Prometheus
 Salt Extension for interacting with Prometheus
 
 %files
+%dir %{python_sitelib}/saltext/
+%{python_sitelib}/saltext/__init__.py
+%{python_sitelib}/saltext/__pycache__
+
+%files mysql
+%{python_sitelib}/saltext/prometheus
+%{python_sitelib}/saltext.prometheus-%{saltext_prometheus_version}*-info
+
+
+%files prometheus
+%{python_sitelib}/saltext/mysql
+%{python_sitelib}/saltext.mysql-%{saltext_mysql_version}*-info
 
 %changelog
 
