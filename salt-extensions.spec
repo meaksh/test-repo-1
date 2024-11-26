@@ -65,6 +65,9 @@ popd
 %package mysql
 Version:        %{saltext_mysql_version}
 Summary:        Salt Extension for interacting with MySQL
+Requires:       %{python_module PyMySQL} or %{python_module mysqlclient}
+Requires:       %{python_module sqlparse}
+Requires:       salt >= 3006.0
 
 %description mysql
 Salt Extension for interacting with MySQL
@@ -72,6 +75,8 @@ Salt Extension for interacting with MySQL
 %package prometheus
 Version:        %{saltext_prometheus_version}
 Summary:        Salt Extension for interacting with Prometheus
+Requires:       %{python_module prometheus-client}
+Requires:       salt >= 3006.0
 
 %description prometheus
 Salt Extension for interacting with Prometheus
@@ -82,13 +87,12 @@ Salt Extension for interacting with Prometheus
 %{python_sitelib}/saltext/__pycache__
 
 %files mysql
-%{python_sitelib}/saltext/prometheus
-%{python_sitelib}/saltext.prometheus-%{saltext_prometheus_version}*-info
-
-
-%files prometheus
 %{python_sitelib}/saltext/mysql
 %{python_sitelib}/saltext.mysql-%{saltext_mysql_version}*-info
+
+%files prometheus
+%{python_sitelib}/saltext/prometheus
+%{python_sitelib}/saltext.prometheus-%{saltext_prometheus_version}*-info
 
 %changelog
 
