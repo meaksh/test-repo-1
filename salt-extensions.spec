@@ -65,8 +65,8 @@ popd
 %package mysql
 Version:        %{saltext_mysql_version}
 Summary:        Salt Extension for interacting with MySQL
-Requires:       (python3-PyMySQL or python3-mysqlclient)
-Requires:       python3-sqlparse
+Requires:       (%{python_module PyMySQL} or %{python_module mysqlclient})
+Requires:       %{python_module sqlparse}
 Requires:       salt >= 3006.0
 
 %description mysql
@@ -75,7 +75,7 @@ Salt Extension for interacting with MySQL
 %package prometheus
 Version:        %{saltext_prometheus_version}
 Summary:        Salt Extension for interacting with Prometheus
-Requires:       python3-prometheus-client
+Requires:       %{python_module prometheus-client}
 Requires:       salt >= 3006.0
 
 %description prometheus
