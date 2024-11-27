@@ -15,7 +15,6 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 #
 
-%global saltext_version 0.1
 %global saltext_mysql_version 1.0.0
 %global saltext_prometheus_version 2.1.0
 
@@ -24,6 +23,9 @@
 Name:           salt-extensions
 Version:        0.1
 Release:        0
+
+%global saltext_version %{version}
+
 Summary:        Salt Extensions provided by openSUSE
 License:        Apache-2.0
 URL:            https://github.com/meaksh/test-repo-1
