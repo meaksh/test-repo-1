@@ -22,7 +22,7 @@
 %{?sle15_python_module_pythons}
 
 Name:           salt-extensions
-Version:        %{saltext_version}
+Version:        0.1
 Release:        0
 Summary:        Salt Extensions provided by openSUSE
 License:        Apache-2.0
